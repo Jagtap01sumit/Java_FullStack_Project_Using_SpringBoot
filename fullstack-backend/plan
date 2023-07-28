@@ -1,0 +1,41 @@
+setup = startspring.io.com
+set dependencies
+
+create packages model,controller,repository
+
+In model create class User
+    private Long id;
+    private String usename;
+    private String name;
+    private  String email;
+    create there getters and setters
+In Repository create UserRepository Interface which extends <User(from model),Long(argument)>
+
+
+
+In Controller package create UserController class
+  Important terminologys:
+	@RestController
+        @Autowired
+	@PostMapping...............(consist the path )
+  	@RequestMapping
+
+
+application.properties
+   spring.jpa.hibernate.ddl-auto=update
+   spring.datasource.url=jdbc:mysql://localhost:3306/databaseName
+   spring.datasource.username=root
+   spring.datasource.password=
+   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+connection front end with backend:
+     const[users,setUsers]=useState([])
+      useEffect(()=>{      //after opening page this data is loaded already
+           loadUsers();
+       },[]);//if not not give empty array it run infinite loop
+      const loadUsers=async()=>{
+           const result= await axios.get("http://localhost:8080/users");
+           console.log(result.data);
+       }
+In backend file userController.java add the frontend path with port number
+     @CrossOrigin("http://localhost:3000")
